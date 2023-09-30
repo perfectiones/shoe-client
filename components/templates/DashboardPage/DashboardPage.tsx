@@ -75,12 +75,9 @@ const DashboardPage = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        <h2 className={`${styles.dashboard__title} ${darkModeClass}`}>
-          Купи у Мордвина
-        </h2>
         <div className={styles.dashboard__parts}>
           <h3 className={`${styles.dashboard__parts__title} ${darkModeClass}`}>
-            Хиты продаж
+            Популярные товары
           </h3>
           <DashboardSlider items={bestsellers.rows || []} spinner={spinner} />
         </div>

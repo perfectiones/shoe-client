@@ -41,23 +41,26 @@ const CityButton = () => {
   }
 
   return (
-    <button className={styles.city} onClick={getCity}>
-      <span className={`${styles.city__span} ${darkModeClass}`}>
-        <LocationSvg />
-      </span>
-      <span className={`${styles.city__text} ${darkModeClass}`}>
-        {spinner ? (
-          <span
-            className={spinnerStyles.spinner}
-            style={{ top: '-10px', left: 10, width: 20, height: 20 }}
-          />
-        ) : city.length ? (
-          city
-        ) : (
-          'Город'
-        )}
-      </span>
-    </button>
+    <div style={{ display: 'flex', gap: '20px' }}>
+      <button className={styles.city} onClick={getCity}>
+        <span className={`${styles.city__span} ${darkModeClass}`}>
+          <LocationSvg />
+        </span>
+        <span className={`${styles.city__text} ${darkModeClass}`}>
+          {spinner ? (
+            <span
+              className={spinnerStyles.spinner}
+              style={{ top: '-10px', left: 10, width: 20, height: 20 }}
+            />
+          ) : city.length ? (
+            city
+          ) : (
+            'Москва и МО'
+          )}
+        </span>
+      </button>
+      <div className={`${styles.city__tel}`}>+8 987 696-02-14</div>
+    </div>
   )
 }
 

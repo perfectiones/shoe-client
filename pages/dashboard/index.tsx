@@ -12,11 +12,11 @@ function Dashboard() {
   return (
     <>
       <Head>
-        <title>Мордов ОЧка | {shouldLoadContent ? 'Главная' : ''}</title>
+        <title>Приду,Поем | {shouldLoadContent ? 'Главная' : ''}</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.png" />
+        <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.jpg" />
       </Head>
       {shouldLoadContent && (
         <Layout>

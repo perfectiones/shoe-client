@@ -10,6 +10,8 @@ import styles from '@/styles/profileDropDown/index.module.scss'
 import { $user } from '@/context/user'
 import { logoutFx } from '@/app/api/auth'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+
 
 const ProfileDropDown = forwardRef<HTMLDivElement, IWrappedComponentProps>(
   ({ open, setOpen }, ref) => {
@@ -26,54 +28,58 @@ const ProfileDropDown = forwardRef<HTMLDivElement, IWrappedComponentProps>(
     }
 
     return (
-      <div className={styles.profile} ref={ref}>
-        <button className={styles.profile__btn} onClick={toggleProfileDropDown}>
-          <span className={styles.profile__span}>
+      <Link href="/profile" passHref legacyBehavior>
+        <div className={styles.profile} ref={ref}>
+          <span
+            className={styles.profile__span}
+            onClick={toggleProfileDropDown}
+          >
             <ProfileSvg />
+            <p>Профиль</p>
           </span>
-        </button>
-        <AnimatePresence>
-          {open && (
-            <motion.ul
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              className={`${styles.profile__dropdown} ${darkModeClass}`}
-              style={{ transformOrigin: 'right top' }}
-            >
-              <li className={styles.profile__dropdown__user}>
-                <span
-                  className={`${styles.profile__dropdown__username} ${darkModeClass}`}
-                >
-                  {user.username}
-                </span>
-                <span
-                  className={`${styles.profile__dropdown__email} ${darkModeClass}`}
-                >
-                  {user.email}
-                </span>
-              </li>
-              <li className={styles.profile__dropdown__item}>
-                <button
-                  className={styles.profile__dropdown__item__btn}
-                  onClick={handleLogout}
-                >
+          <AnimatePresence>
+            {open && (
+              <motion.ul
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                className={`${styles.profile__dropdown} ${darkModeClass}`}
+                style={{ transformOrigin: 'right top' }}
+              >
+                <li className={styles.profile__dropdown__user}>
                   <span
-                    className={`${styles.profile__dropdown__item__text} ${darkModeClass}`}
+                    className={`${styles.profile__dropdown__username} ${darkModeClass}`}
                   >
-                    Выйти
+                    {user.username}
                   </span>
                   <span
-                    className={`${styles.profile__dropdown__item__svg} ${darkModeClass}`}
+                    className={`${styles.profile__dropdown__email} ${darkModeClass}`}
                   >
-                    <LogoutSvg />
+                    {user.email}
                   </span>
-                </button>
-              </li>
-            </motion.ul>
-          )}
-        </AnimatePresence>
-      </div>
+                </li>
+                <li className={styles.profile__dropdown__item}>
+                  <button
+                    className={styles.profile__dropdown__item__btn}
+                    onClick={handleLogout}
+                  >
+                    <span
+                      className={`${styles.profile__dropdown__item__text} ${darkModeClass}`}
+                    >
+                      Выйти
+                    </span>
+                    <span
+                      className={`${styles.profile__dropdown__item__svg} ${darkModeClass}`}
+                    >
+                      <LogoutSvg />
+                    </span>
+                  </button>
+                </li>
+              </motion.ul>
+            )}
+          </AnimatePresence>
+        </div>
+      </Link>
     )
   }
 )

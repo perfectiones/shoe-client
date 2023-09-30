@@ -14,12 +14,12 @@ function Order() {
     <>
       <Head>
         <title>
-          Мордов ОЧка | {shouldLoadContent ? 'Оформление заказа' : ''}
+          Приеду, Поем | {shouldLoadContent ? 'Оформление заказа' : ''}
         </title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.png" />
+        <link rel="icon" type="image/svg" sizes="32x32" href="/img/logo.jpg" />
       </Head>
       {shouldLoadContent && (
         <Layout>

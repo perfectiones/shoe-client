@@ -158,7 +158,7 @@ const Footer = () => {
           {isMedia750 && <FooterLogo />}
           <div className={styles.footer__bottom__block}>
             <p className={styles.footer__bottom__block__copyright}>
-              © «Купи у Мордвина» 1000 - 7.
+              © «Приду, Поем» 2023.
             </p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 .cart {
   position: relative;
+  cursor: pointer;
 
   &__btn {
     position: relative;
@@ -42,18 +43,6 @@
 
   &__btn.dark_mode:hover &__text {
     color: #FFC540;
-    transition: color .2s ease-in-out;
-  }
-
-  &__svg {
-    & svg {
-      stroke: #1C629E;
-      transition: stroke .2s ease-in-out;
-    }
-  }
-
-  &__text {
-    color: #1C629E;
     transition: color .2s ease-in-out;
   }
 

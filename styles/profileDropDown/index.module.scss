@@ -1,13 +1,17 @@
 .profile {
-  grid-column: 13;
+  cursor: pointer;
   position: relative;
   margin: 0;
   padding: 0;
   border: none;
-  width: 20px;
-  height: 20px;
   background-color: transparent;
   z-index: 10;
+
+  span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   &__btn {
     margin: 0;
@@ -18,25 +22,11 @@
   }
 
   &__span {
-    position: absolute;
-    top: -4px;
-    left: -20px;
-
-    @media (max-width: 560px) {
-      left: -12px;
-    }
-
     & svg {
       fill: #fff;
-      transition: fill .2s ease-in-out;
+      transition: fill 0.2s ease-in-out;
     }
   }
-
-  &:hover &__span>svg {
-    fill: #FFC540;
-    transition: fill .2s ease-in-out;
-  }
-
   &__dropdown {
     position: absolute;
     top: 24px;
@@ -95,8 +85,8 @@
         height: 18px;
 
         & svg {
-          fill: #2D2D2D;
-          transition: fill .2s ease-in-out;
+          fill: #2d2d2d;
+          transition: fill 0.2s ease-in-out;
         }
 
         &.dark_mode svg {
@@ -104,15 +94,15 @@
         }
       }
 
-      &:hover &__svg>svg {
-        fill: #FFC540;
-        transition: fill .2s ease-in-out;
+      &:hover &__svg > svg {
+        fill: #ffc540;
+        transition: fill 0.2s ease-in-out;
       }
 
       &__text {
         margin-right: 5px;
         color: #2d2d2d;
-        transition: color .2s ease-in-out;
+        transition: color 0.2s ease-in-out;
 
         &.dark_mode {
           color: #f2f2f2;
@@ -120,8 +110,8 @@
       }
 
       &:hover &__text {
-        color: #FFC540;
-        transition: color .2s ease-in-out;
+        color: #ffc540;
+        transition: color 0.2s ease-in-out;
       }
     }
   }

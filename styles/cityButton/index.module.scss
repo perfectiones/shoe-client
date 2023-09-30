@@ -47,7 +47,7 @@
     font-size: 16px;
     letter-spacing: 0.002em;
     text-decoration-line: underline;
-    color: #FAFBFC;
+    color: #000;
     transition: color .2s ease-in-out;
 
     @media (max-width: 950px) {
@@ -59,4 +59,9 @@
       }
     }
   }
+
+  &__tel{
+    cursor: pointer;
+  }
 }
+

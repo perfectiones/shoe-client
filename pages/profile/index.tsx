@@ -1,20 +1,19 @@
 import Head from 'next/head'
+import { useCallback } from 'react'
 import Layout from '@/components/layout/Layout'
 import useRedirectByUserCheck from '@/hooks/useRedirectByUserCheck'
-import CatalogPage from '@/components/templates/CatalogPage/CatalogPage'
-import { IQueryParams } from '@/types/catalog'
 import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
-import { useCallback } from 'react'
+import ProfilePage from '@/components/templates/ProfilePage/ProfilePage'
 
-function Catalog({ query }: { query: IQueryParams }) {
+function Profile() {
   const { shouldLoadContent } = useRedirectByUserCheck()
-  const getDefaultTextGenerator = useCallback(() => 'Каталог', [])
+  const getDefaultTextGenerator = useCallback(() => 'Мой профиль', [])
   const getTextGenerator = useCallback((param: string) => ({}[param]), [])
 
   return (
     <>
       <Head>
-        <title>Приду,Поем | {shouldLoadContent ? 'Каталог' : ''}</title>
+        <title>Приеду, Поем | {shouldLoadContent ? 'Мой профиль' : ''}</title>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +26,7 @@ function Catalog({ query }: { query: IQueryParams }) {
               getDefaultTextGenerator={getDefaultTextGenerator}
               getTextGenerator={getTextGenerator}
             />
-            <CatalogPage query={query} />
+            <ProfilePage />
             <div className="overlay" />
           </main>
         </Layout>
@@ -36,10 +35,4 @@ function Catalog({ query }: { query: IQueryParams }) {
   )
 }
 
-export async function getServerSideProps(context: { query: IQueryParams }) {
-  return {
-    props: { query: { ...context.query } },
-  }
-}
-
-export default Catalog
+export default Profile
