@@ -25,6 +25,7 @@ export interface ISignInFx {
 }
 
 export interface IUser {
+  status: string
   username: string
   userId: number | string
   email: string

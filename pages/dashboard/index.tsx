@@ -8,7 +8,6 @@ function Dashboard() {
   const { shouldLoadContent } = useRedirectByUserCheck()
   const getDefaultTextGenerator = () => ''
   const getTextGenerator = () => ''
-
   return (
     <>
       <Head>

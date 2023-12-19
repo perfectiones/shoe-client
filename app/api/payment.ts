@@ -13,7 +13,7 @@ export const makePaymentFx = createEffect(
 export const checkPaymentFx = createEffect(
   async ({ url, paymentId }: ICheckPayFx) => {
     const { data } = await api.post(url, { paymentId })
-
+    
     return data
   }
 )

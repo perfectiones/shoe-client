@@ -10,7 +10,7 @@ function Catalog({ query }: { query: IQueryParams }) {
   const { shouldLoadContent } = useRedirectByUserCheck()
   const getDefaultTextGenerator = useCallback(() => 'Каталог', [])
   const getTextGenerator = useCallback((param: string) => ({}[param]), [])
-
+  console.log(query)
   return (
     <>
       <Head>

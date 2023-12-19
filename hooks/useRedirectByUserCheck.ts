@@ -18,7 +18,44 @@ const useRedirectByUserCheck = (isAuthPage = false) => {
   const checkUser = async () => {
     const user = await checkUserAuthFx('/users/login-check')
 
+    if (window.location.href.includes('admin')) {
+      if (user.status !== 'admin') {
+        setShouldLoadContent(true)
+        router.push('/dashboard')
+        return
+      }
+    }
+
+    if (window.location.href.includes('dispatcher')) {
+      if (user.status !== 'dispatcher') {
+        setShouldLoadContent(true)
+        router.push('/dashboard')
+        return
+      }
+    }
+
+    if (window.location.href.includes('kladman')) {
+      if (user.status !== 'kladman') {
+        setShouldLoadContent(true)
+        router.push('/dashboard')
+        return
+      }
+    }
+
+    if (window.location.href.includes('kurier')) {
+      if (user.status !== 'kurier') {
+        setShouldLoadContent(true)
+        router.push('/dashboard')
+        return
+      }
+    }
+
     if (isAuthPage) {
+      if (user.status == 'admin') {
+        setShouldLoadContent(true)
+        router.push('/admin')
+        return
+      }
       if (!user) {
         setShouldLoadContent(true)
         return

@@ -15,6 +15,7 @@ import { removeFromCartFx } from '@/app/api/shopping-cart'
 import { $user, $userCity } from '@/context/user'
 import styles from '@/styles/order/index.module.scss'
 import spinnerStyles from '@/styles/spinner/index.module.scss'
+import { addOrder, updateOrder } from '@/utils/order'
 
 const OrderPage = () => {
   const mode = useStore($mode)
@@ -27,15 +28,32 @@ const OrderPage = () => {
   const [agreement, setAgreement] = useState(false)
   const spinner = useStore(makePaymentFx.pending)
   const router = useRouter()
+  let order =
+    shoppingCart.length > 1
+      ? {
+          userId: user.username,
+          partId: shoppingCart.map((el) => el.partId),
+        }
+      : shoppingCart.length > 0
+      ? { userId: user.userId, partId: shoppingCart[0].partId }
+      : {}
+
+  console.log(order)
+
+  console.log(shoppingCart)
+  console.log(user)
 
   const handleAgreementChange = () => setAgreement(!agreement)
 
   useEffect(() => {
     const paymentId = sessionStorage.getItem('paymentId')
 
+    console.log(paymentId)
+
     if (paymentId) {
       checkPayment(paymentId)
     }
+    sessionStorage.removeItem('paymentId')
   }, [])
 
   const makePay = async () => {
@@ -49,7 +67,7 @@ const OrderPage = () => {
             : ''
         }`,
       })
-
+      addOrder(order)
       sessionStorage.setItem('paymentId', data.id)
       router.push(data.confirmation.confirmation_url)
     } catch (error) {
@@ -63,13 +81,12 @@ const OrderPage = () => {
         url: '/payment/info',
         paymentId,
       })
-
       if (data.status === 'succeeded') {
         resetCart()
+        //Сюда пихаем добавление заказа
+
         return
       }
-
-      sessionStorage.removeItem('paymentId')
     } catch (error) {
       console.log((error as Error).message)
       resetCart()
@@ -79,11 +96,17 @@ const OrderPage = () => {
   const resetCart = async () => {
     sessionStorage.removeItem('paymentId')
     await removeFromCartFx(`/shopping-cart/all/${user.userId}`)
+
     setShoppingCart([])
+  }
+
+  const checkUpdate = () => {
+    updateOrder(shoppingCart)
   }
 
   return (
     <section className={styles.order}>
+      <button onClick={checkUpdate}>CLick</button>
       <div className="container">
         <h2 className={`${styles.order__title} ${darkModeClass}`}>
           Оформление заказа

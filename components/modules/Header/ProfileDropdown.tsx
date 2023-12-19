@@ -12,7 +12,6 @@ import { logoutFx } from '@/app/api/auth'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-
 const ProfileDropDown = forwardRef<HTMLDivElement, IWrappedComponentProps>(
   ({ open, setOpen }, ref) => {
     const mode = useStore($mode)
@@ -28,58 +27,60 @@ const ProfileDropDown = forwardRef<HTMLDivElement, IWrappedComponentProps>(
     }
 
     return (
-      <Link href="/profile" passHref legacyBehavior>
-        <div className={styles.profile} ref={ref}>
-          <span
-            className={styles.profile__span}
-            onClick={toggleProfileDropDown}
-          >
-            <ProfileSvg />
-            <p>Профиль</p>
-          </span>
-          <AnimatePresence>
-            {open && (
-              <motion.ul
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-                className={`${styles.profile__dropdown} ${darkModeClass}`}
-                style={{ transformOrigin: 'right top' }}
-              >
-                <li className={styles.profile__dropdown__user}>
+      <div className={styles.profile} ref={ref}>
+        <span className={styles.profile__span} onClick={toggleProfileDropDown}>
+          <ProfileSvg />
+          <p>Профиль</p>
+        </span>
+        <AnimatePresence>
+          {open && (
+            <motion.ul
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              className={`${styles.profile__dropdown} ${darkModeClass}`}
+              style={{ transformOrigin: 'right top' }}
+            >
+              <li className={styles.profile__dropdown__user}>
+                <span
+                  className={`${styles.profile__dropdown__username} ${darkModeClass}`}
+                >
+                  <Link href="/profile">{user.username}</Link>
+                </span>
+                <span
+                  className={`${styles.profile__dropdown__email} ${darkModeClass}`}
+                >
+                  {user.email}
+                </span>
+              </li>
+              {user.status == 'admin' ? (
+                <Link href="/admin">
+                  <li style={{ margin: '10px 0' }}>AdminPage</li>
+                </Link>
+              ) : (
+                <></>
+              )}
+              <li className={styles.profile__dropdown__item}>
+                <button
+                  className={styles.profile__dropdown__item__btn}
+                  onClick={handleLogout}
+                >
                   <span
-                    className={`${styles.profile__dropdown__username} ${darkModeClass}`}
+                    className={`${styles.profile__dropdown__item__text} ${darkModeClass}`}
                   >
-                    {user.username}
+                    Выйти
                   </span>
                   <span
-                    className={`${styles.profile__dropdown__email} ${darkModeClass}`}
+                    className={`${styles.profile__dropdown__item__svg} ${darkModeClass}`}
                   >
-                    {user.email}
+                    <LogoutSvg />
                   </span>
-                </li>
-                <li className={styles.profile__dropdown__item}>
-                  <button
-                    className={styles.profile__dropdown__item__btn}
-                    onClick={handleLogout}
-                  >
-                    <span
-                      className={`${styles.profile__dropdown__item__text} ${darkModeClass}`}
-                    >
-                      Выйти
-                    </span>
-                    <span
-                      className={`${styles.profile__dropdown__item__svg} ${darkModeClass}`}
-                    >
-                      <LogoutSvg />
-                    </span>
-                  </button>
-                </li>
-              </motion.ul>
-            )}
-          </AnimatePresence>
-        </div>
-      </Link>
+                </button>
+              </li>
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </div>
     )
   }
 )

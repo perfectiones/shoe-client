@@ -28,9 +28,12 @@ import CatalogFilters from '@/components/modules/CatalogPage/CatalogFilters'
 import { usePopup } from '@/hooks/usePoup'
 import { checkQueryParams } from '@/utils/catalog'
 import FilterSvg from '@/components/elements/FilterSvg/FilterSvg'
+import { $user } from '@/context/user'
+
 
 const CatalogPage = ({ query }: { query: IQueryParams }) => {
   const mode = useStore($mode)
+  const user = useStore($user)
   const boilerManufacturers = useStore($boilerManufacturers)
   const partsManufacturers = useStore($partsManufacturers)
   const filteredBoilerParts = useStore($filteredBoilerParts)
@@ -64,13 +67,10 @@ const CatalogPage = ({ query }: { query: IQueryParams }) => {
     loadBoilerParts()
   }, [filteredBoilerParts, isFilterInQuery])
 
-  console.log(boilerParts.rows)
-
   const loadBoilerParts = async () => {
     try {
       setSpinner(true)
       const data = await getBoilerPartsFx('/boiler-parts?limit=20&offset=0')
-
       if (!isValidOffset) {
         router.replace({
           query: {

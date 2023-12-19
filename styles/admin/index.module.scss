@@ -1,0 +1,51 @@
+.admin {
+  &__header {
+    border-bottom: 1px solid black;
+    .admin__headerBody {
+      display: flex;
+      justify-content: space-between;
+
+      padding: 15px 0;
+      nav {
+        ul {
+          display: flex;
+          gap: 30px;
+        }
+      }
+    }
+  }
+  &__users {
+    margin-top: 30px;
+    &Item {
+      border: 1px solid black;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: end;
+      gap: 5px;
+      &__name {
+      }
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      li{
+        height: 150px;
+        max-width: 270px;
+        width: 100%;
+      }
+      gap: 15px;
+    }
+  }
+  &__form{
+    form{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  ul {
+    list-style: none;
+  }
+}
